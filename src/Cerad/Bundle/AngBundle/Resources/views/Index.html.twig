@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html ang="en" ng-app="ceradApp">
+    <head>
+        <title>ANG1</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        {% javascripts
+            '@CeradAngBundle/Resources/public/vendor/angular/angular.js'
+            '@CeradAngBundle/Resources/public/vendor/angular/angular-route.js'
+            '@CeradAngBundle/Resources/public/vendor/angular/angular-resource.js'
+
+            '@CeradAngBundle/Resources/public/js/app.js'
+            '@CeradAngBundle/Resources/public/js/controllers.js'
+        %}
+            <script src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+    </head>
+    <body>
+        <h3>Twig Index</h3>
+        <a href="/app_dev.php">Home</a>
+        <a href="/app_dev.php#/games">Games</a>
+        <a href="/app_dev.php#/persons">Persons</a>
+        
+        <div ng-view></div>
+    </body>
+</html>
+

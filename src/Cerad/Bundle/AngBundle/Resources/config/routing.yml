@@ -1,6 +1,11 @@
 cerad_ang_index:
     pattern:  /
     defaults: 
+        _controller: CeradAngBundle:Index:index
+        
+cerad_ang_index_partial:
+    pattern:  /
+    defaults: 
         _controller: cerad_ang.partials.controller:getAction
         partial: index.html
         
