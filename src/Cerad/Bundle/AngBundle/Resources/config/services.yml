@@ -1,0 +1,9 @@
+parameters:
+#    cerad_ang.example.class: Cerad\Bundle\AngBundle\Example
+
+services:
+    cerad_ang.partials.controller:
+        class: Cerad\Bundle\AngBundle\Controller\PartialsController
+        arguments:
+            - '%cerad_ang_resources_dir%'
+

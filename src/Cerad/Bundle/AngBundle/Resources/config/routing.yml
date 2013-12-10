@@ -1,0 +1,11 @@
+cerad_ang_index:
+    pattern:  /
+    defaults: 
+        _controller: cerad_ang.partials.controller:getAction
+        partial: index.html
+        
+cerad_ang_partials:
+    pattern:  /partials/{partial}
+    defaults: 
+        _controller: cerad_ang.partials.controller:getAction
+        
