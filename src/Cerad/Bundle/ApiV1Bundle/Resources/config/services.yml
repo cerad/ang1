@@ -1,0 +1,11 @@
+parameters:
+#    cerad_api_v1.example.class: Cerad\Bundle\ApiV1Bundle\Example
+
+services:
+    cerad_api_vi.persons.dbal_connection:
+        alias: doctrine.dbal.default_connection
+
+    cerad_api_v1.persons.controller:
+        class: Cerad\Bundle\ApiV1Bundle\Controller\PersonsController
+        arguments: 
+            - '@cerad_api_vi.persons.dbal_connection'

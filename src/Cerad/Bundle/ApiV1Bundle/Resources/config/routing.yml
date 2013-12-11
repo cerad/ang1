@@ -1,0 +1,27 @@
+cerad_api_v1_persons_get:
+    path:  /api/v1/persons/{personId}
+    methods:  [GET]
+    defaults: 
+        _controller: cerad_api_v1.persons.controller:getAction
+        personId: null
+    requirements:
+        personId:  \d+      
+    
+cerad_api_v1_persons_post:
+    path:  /api/v1/persons
+    methods:  [POST]
+    defaults: 
+        _controller: cerad_api_v1.persons.controller:postAction
+    
+cerad_api_v1_persons_put:
+    path:  /api/v1/persons
+    methods:  [PUT]
+    defaults: 
+        _controller: cerad_api_v1.persons.controller:putAction
+    
+cerad_api_v1_persons_delete:
+    path:  /api/v1/persons
+    methods:  [DELETE]
+    defaults: 
+        _controller: cerad_api_v1.persons.controller:deleteAction
+    

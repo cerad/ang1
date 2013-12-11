@@ -18,6 +18,7 @@ class AppKernel extends Kernel
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             
             new Cerad\Bundle\AngBundle\CeradAngBundle(),
+            new Cerad\Bundle\ApiV1Bundle\CeradApiV1Bundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
