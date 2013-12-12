@@ -2,9 +2,9 @@
 
 var ceradApp = angular.module('ceradApp', [
   'ngRoute',
-  'ceradControllers'
+  'ceradControllers',
 //'phonecatFilters',
-//'phonecatServices'
+  'ceradServices'
 ]);
 
 ceradApp.config(['$routeProvider',
