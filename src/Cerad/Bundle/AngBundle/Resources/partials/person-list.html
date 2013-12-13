@@ -21,7 +21,7 @@
 </tr>
 <tr ng-repeat="person in persons | filter:search">
     <td>{{ $index + 1        }}</td>
-    <td>{{ person.id         }}</td>
+    <td><a href="/#person/edit/{{ person.id }}">{{ person.id }}</a></td>
     <td>{{ person.nameFull   }}</td>
     <td>{{ person.nameFirst  }}</td>
     <td>{{ person.nameLast   }}</td>

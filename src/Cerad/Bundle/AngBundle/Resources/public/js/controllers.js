@@ -15,6 +15,38 @@ ceradControllers.controller('PersonListController', ['$scope','PersonResource',
       };
 }]);
 
+ceradControllers.controller('PersonEditController', ['$scope','$routeParams','PersonResource',
+    function($scope, $routeParams, personResource) 
+    {
+        $scope.person = {}
+      
+        // For change detection
+        $scope.master = personResource.get({personId: $routeParams.personId}, function()
+        {
+            $scope.person = angular.copy($scope.master);
+          //console.log($scope.master);
+        });
+      
+        // Reset cannot be pressed until master is loaded
+        $scope.reset = function()
+        {
+            $scope.person = angular.copy($scope.master);
+        };
+      
+        $scope.isUnchanged = function(person) 
+        {
+            return angular.equals(person,$scope.master);
+        };
+ 
+        // Save the changes, deal with errors?
+        $scope.update = function(person)
+        {
+            personResource.save(person);
+            
+          //person.$save(); // Does not work because of copy?
+        };
+}]);
+
 ceradControllers.controller('GameListController', ['$scope',
   function($scope) {
     $scope.games = [];

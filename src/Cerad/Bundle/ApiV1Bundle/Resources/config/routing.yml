@@ -8,10 +8,13 @@ cerad_api_v1_persons_get:
         personId:  \d+      
     
 cerad_api_v1_persons_post:
-    path:  /api/v1/persons
+    path:  /api/v1/persons/{personId}
     methods:  [POST]
     defaults: 
         _controller: cerad_api_v1.persons.controller:postAction
+        personId: null
+    requirements:
+        personId:  \d+      
     
 cerad_api_v1_persons_put:
     path:  /api/v1/persons

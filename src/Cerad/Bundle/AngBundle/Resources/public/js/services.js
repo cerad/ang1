@@ -7,7 +7,7 @@ var ceradServices = angular.module('ceradServices', ['ngResource']);
 ceradServices.factory('PersonResource', ['$resource',
   function($resource)
   {
-    var person =  $resource('api/v1/persons/:personId', {}, 
+    var person =  $resource('api/v1/persons/:personId', { personId: '@id' }, 
     {
         query: {method:'GET', params:{personId:null}, isArray:true}
     });

@@ -18,6 +18,10 @@ ceradApp.config(['$routeProvider',
         templateUrl: 'partials/person-list.html',
         controller: 'PersonListController'
       }).
+      when('/person/edit/:personId', {
+        templateUrl: 'partials/person-edit.html',
+        controller: 'PersonEditController'
+      }).
       otherwise({
         redirectTo: '/'
       });

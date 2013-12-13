@@ -306,6 +306,8 @@ EOT;
     {   
         $personData = json_decode($request->getContent(),true);
         
+        return new JsonResponse($personData,200);
+
       //$personData['method']      = $request->getMethod();
       //$personData['content']     = $request->getContent();
       //$personData['contentType'] = $request->getContentType();
