@@ -25,12 +25,15 @@ ceradControllers.controller('PersonEditController', ['$scope','$routeParams','Pe
         {
             $scope.person = angular.copy($scope.master);
           //console.log($scope.master);
+          //console.log($scope.master.getFed('AYSOV')); // Works
+          //console.log($scope.master.$save()); // Does not exist
         });
       
         // Reset cannot be pressed until master is loaded
         $scope.reset = function()
         {
             $scope.person = angular.copy($scope.master);
+            $scope.form.$setPristine();
         };
       
         $scope.isUnchanged = function(person) 
