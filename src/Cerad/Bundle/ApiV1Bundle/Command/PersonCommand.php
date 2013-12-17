@@ -25,9 +25,9 @@ class PersonCommand extends ContainerAwareCommand
         $repo = $this->getService('cerad_api_v1.person.repository.doctrine_dbal');
         
         $params = array(
-            'page'     => 2, 
-            'page_per' => 10,
-            'order_by' => 'person.name_last',
+            'page'     => 0, 
+            'page_per' => 1000,
+            'order_by' => 'person.name_full',
         );
         
         $ids = $repo->queryPersonIds($params);
@@ -42,10 +42,15 @@ class PersonCommand extends ContainerAwareCommand
         $i = 0;
         foreach($persons as $person)
         {
+            if (!isset($person['plans']))
+            {
+                echo sprintf("%3d %3d %s %s %s\n",$i++,$person['id'],$person['name_full'],$person['email'],$person['phone']);
+            }/*
+            else $person['plans'] = array();
             foreach($person['plans'] as $plan)
             {
-                echo sprintf("%3d %3d %s %s\n",$i++,$person['id'],$plan['project_id'],$person['name_full']);
-            }
+                //echo sprintf("%3d %3d %s %s\n",$i++,$person['id'],$plan['project_id'],$person['name_full']);
+            }*/
         }
       //print_r($persons[5]);
     }

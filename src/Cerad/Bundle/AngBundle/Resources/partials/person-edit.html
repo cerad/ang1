@@ -4,18 +4,18 @@
 <form name="form" novalidate class="simple-form css-form">
     ID: {{ person.id }}<br />
     
-    Full Name:  <input type="text"  ng-model="person.nameFull"  name="personNameFull" required /><br />
-    <div ng-show="form.personNameFull.$dirty && form.personNameFull.$invalid">Invalid:
-        <span ng-show="form.personNameFull.$error.required">Full Name is required.</span>
+    Full Name:  <input type="text"  ng-model="person.name_full"  name="person_name_full" required /><br />
+    <div ng-show="form.person_name_full.$dirty && form.person_name_full.$invalid">Invalid:
+        <span ng-show="form.person_name_full.$error.required">Full Name is required.</span>
     </div>
     
-    First Name: <input type="text"  ng-model="person.nameFirst" /><br />
-    Last Name:  <input type="text"  ng-model="person.nameLast"  /><br />
+    First Name: <input type="text"  ng-model="person.name_first" /><br />
+    Last Name:  <input type="text"  ng-model="person.name_last"  /><br />
     
-    Email: <input type="email" ng-model="person.email" name="personEmail" required /><br />
-    <div ng-show="form.personEmail.$dirty && form.personEmail.$invalid">Invalid:
-        <span ng-show="form.personEmail.$error.required">Email is required.</span>
-        <span ng-show="form.personEmail.$error.email">This is not a valid email.</span>
+    Email: <input type="email" ng-model="person.email" name="person_email" required /><br />
+    <div ng-show="form.person_email.$dirty && form.person_email.$invalid">Invalid:
+        <span ng-show="form.person_email.$error.required">Email is required.</span>
+        <span ng-show="form.person_email.$error.email">This is not a valid email.</span>
     </div>
     
     <button ng-click="reset()" ng-disabled="isUnchanged(person)">RESET</button>

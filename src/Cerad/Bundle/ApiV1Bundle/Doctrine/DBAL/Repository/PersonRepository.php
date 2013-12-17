@@ -262,14 +262,14 @@ EOT;
     {
         switch($view)
         {
-            case 'Admin': return $this->getPersonAdminSelect();
+            case 'admin': return $this->getPersonAdminSelect();
         }
         return $this->getPersonBasicSelect();
     }
     /* ===============================================================
      * The every popular find
      */
-    public function find($id, $view = 'Admin')
+    public function find($id, $view = 'admin')
     {
         if (!$id) return null;
         
@@ -296,7 +296,7 @@ EOT;
         if ($idsCount < 1) return array();
         
         // Full query
-        $view = isset($params['view']) ? $params['view'] : 'Admin';
+        $view = isset($params['view']) ? $params['view'] : 'admin';
         $sql = $this->getSelectForView($view);
 
         // In statement

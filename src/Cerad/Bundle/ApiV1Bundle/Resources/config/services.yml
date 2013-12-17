@@ -5,12 +5,13 @@ services:
     cerad_api_vi.persons.dbal_connection:
         alias: doctrine.dbal.default_connection
 
-    cerad_api_v1.persons.controller:
-        class: Cerad\Bundle\ApiV1Bundle\Controller\PersonsController
-        arguments: 
-            - '@cerad_api_vi.persons.dbal_connection'
-            
     cerad_api_v1.person.repository.doctrine_dbal:
         class: Cerad\Bundle\ApiV1Bundle\Doctrine\DBAL\Repository\PersonRepository
         arguments: 
             - '@cerad_api_vi.persons.dbal_connection'
+            
+    cerad_api_v1.persons.controller:
+        class: Cerad\Bundle\ApiV1Bundle\Controller\PersonsController
+        arguments: 
+            - '@cerad_api_v1.person.repository.doctrine_dbal'
+            
