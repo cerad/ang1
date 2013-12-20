@@ -18,6 +18,62 @@
         <span ng-show="form.person_email.$error.email">This is not a valid email.</span>
     </div>
     
+    AYSO Fed: 
+        <input type="text" ng-model="person.getFedAYSOV().role" size="8" readonly />
+        <input type="text" ng-model="person.getFedAYSOV().id"/>
+        <select 
+            ng-model="person.getFedAYSOV().verified"    
+            ng-options="obj.value as obj.content for obj in verifiedOptions"
+        ></select>
+    <br />
+    AYSO Region: 
+        <input type="text" ng-model="person.getOrgRegionAYSO().id"   size="4" readonly />
+        <input type="text" ng-model="person.getOrgRegionAYSO().role" size="8" readonly />
+        <input type="text" ng-model="person.getOrgRegionAYSO().org_id" />
+        <select 
+            ng-model="person.getOrgRegionAYSO().mem_year"    
+            ng-options="obj.value as obj.content for obj in orgAYSOMemYearOptions"
+        ></select>
+        <select 
+            ng-model="person.getOrgRegionAYSO().verified"    
+            ng-options="obj.value as obj.content for obj in verifiedOptions"
+        ></select>
+    <br />
+    
+    AYSO Referee: 
+        <input type="text" ng-model="person.getCertRefereeAYSO().id"   size="4" readonly />
+        <input type="text" ng-model="person.getCertRefereeAYSO().role" size="8" readonly />
+        <select 
+            ng-model="person.getCertRefereeAYSO().badge"    
+            ng-options="obj.value as obj.content for obj in certRefereeAYSOBadgeOptions"
+        ></select>
+        <select 
+            ng-model="person.getCertRefereeAYSO().badgex"    
+            ng-options="obj.value as obj.content for obj in certRefereeAYSOBadgeOptions"
+        ></select>
+        <select 
+            ng-model="person.getCertRefereeAYSO().upgrading"    
+            ng-options="obj.value as obj.content for obj in upgradingOptions"
+        ></select>
+        <select 
+            ng-model="person.getCertRefereeAYSO().verified"    
+            ng-options="obj.value as obj.content for obj in verifiedOptions"
+        ></select>
+    <br />
+    
+    AYSO Safe Haven: 
+        <input type="text" ng-model="person.getCertSafeHavenAYSO().id"   size="4" readonly />
+        <input type="text" ng-model="person.getCertSafeHavenAYSO().role" size="8" readonly />
+        <select 
+            ng-model="person.getCertSafeHavenAYSO().badge"    
+            ng-options="obj.value as obj.content for obj in certSafeHavenAYSOBadgeOptions"
+        ></select>
+        <select 
+            ng-model="person.getCertSafeHavenAYSO().verified"    
+            ng-options="obj.value as obj.content for obj in verifiedOptions"
+        ></select>
+    <br />
+    
     <button ng-click="reset()" ng-disabled="isUnchanged(person)">RESET</button>
     <button ng-click="update(person)" ng-disabled="form.$invalid || isUnchanged(person)">SAVE</button>
 

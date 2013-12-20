@@ -42,47 +42,24 @@ class PersonsController
     }
     /* ============================================================
      * Post with a json string
-     * End up with a nested data array
-     * Tempting to just go with dbal for this
      * 
-     * Also be nice to handle array of persons
+     * Return 200 for success
+     * 400? for failure
+     * 
+     * Currently return changed record but that might change
      */
     public function postAction(Request $request)
     {   
         $personData = json_decode($request->getContent(),true);
         
-        return new JsonResponse($personData,200);
+        $personId = $personData['id'];
+        
+        $this->personRepo->updatePerson($personData);
+        
+        $personDatax = $this->personRepo->find($personId);
+        
+        return new JsonResponse($personDatax,200);
 
-      //$personData['method']      = $request->getMethod();
-      //$personData['content']     = $request->getContent();
-      //$personData['contentType'] = $request->getContentType();
-        
-        $personRepo = $this->personRepo;
-        
-        $person = $personRepo->createPerson();
-        
-        // Name is a value object
-        $personName = $person->getName();
-        $personName->full  = $personData['name']['full'];
-        $personName->first = $personData['name']['first'];
-        $personName->last  = $personData['name']['last'];
-        $person->setName($personName);
-        
-        $personRepo->save($person);
-        $personRepo->commit();
-        
-        $personData['id']  = $person->getId();
-        $personData['xxx'] = 'yyy';
-        
-        // Even thoug we return a 201, still set the Location header
-        // Generates: /cerad2/api/v1/persons/257
-        $url = $this->router->generate('cerad_api_v1_persons_get', array('personId' => $person->getId()));
-        
-        $personData['location'] = $url;
-       
-        $headers = array('Location' => $url);
-        
-        return new JsonResponse($personData,201,$headers);
     }
 }
 ?>

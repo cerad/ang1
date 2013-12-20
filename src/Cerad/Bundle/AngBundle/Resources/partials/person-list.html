@@ -1,5 +1,5 @@
 <div>Person List Partial</div>
-<input type="text" ng-model="search.nameFull"/>
+<input type="text" ng-model="search.name_full"/>
 <input type="text" ng-model="page_per" ng-change="refresh()" />
 <button type='button' ng-click="refresh()">Refresh</button>
 <table border="1">
@@ -19,7 +19,7 @@
     <th>Mem Year</th>
     <th>Region</th>
 </tr>
-<tr ng-repeat="person in persons | filter:search">
+<tr id="person-id-{{ person.id }}" ng-repeat="person in persons | filter:search">
     <td>{{ $index + 1        }}</td>
     <td><a href="#person/edit/{{ person.id }}">{{ person.id }}</a></td>
     <td>{{ person.name_full   }}</td>

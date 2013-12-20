@@ -52,17 +52,28 @@ SELECT
     person.dob        AS person__dob,
     
     person_fed.id           AS person_fed__id,
+    person_fed.person_id    AS person_fed__person_id,
     person_fed.fed_role_id  AS person_fed__role,
+    person_fed.status       AS person_fed__status,
+    person_fed.verified     AS person_fed__verified,
                 
-    person_fed_cert.id      AS person_fed_cert__id,
-    person_fed_cert.role    AS person_fed_cert__role,
-    person_fed_cert.badge   AS person_fed_cert__badge,
-    person_fed_cert.badgex  AS person_fed_cert__badgex,
+    person_fed_cert.id            AS person_fed_cert__id,
+    person_fed_cert.role          AS person_fed_cert__role,
+    person_fed_cert.badge         AS person_fed_cert__badge,
+    person_fed_cert.badgex        AS person_fed_cert__badgex,
+    person_fed_cert.date_cert     AS person_fed_cert__date_cert,
+    person_fed_cert.date_upgraded AS person_fed_cert__date_upgraded,
+    person_fed_cert.date_expires  AS person_fed_cert__date_expires,
+    person_fed_cert.upgrading     AS person_fed_cert__upgrading,
+    person_fed_cert.status        AS person_fed_cert__status,
+    person_fed_cert.verified      AS person_fed_cert__verified,
                 
     person_fed_org.id       AS person_fed_org__id,
     person_fed_org.role     AS person_fed_org__role,
     person_fed_org.org_id   AS person_fed_org__org_id,
     person_fed_org.mem_year AS person_fed_org__mem_year,
+    person_fed_org.status   AS person_fed_org__status,
+    person_fed_org.verified AS person_fed_org__verified,
                 
     person_plan.id           AS person_plan__id,
     person_plan.project_id   AS person_plan__project_id,
@@ -313,5 +324,51 @@ EOT;
         $rows = $this->conn->fetchAll($sql);
         
         return $this->mapRowsToItems($rows);
+    }
+    /* ===============================================================
+     * Compares item with the database and returns list of any changes
+     */
+    public function updateItem($tableName,$item)
+    {
+        // Need an id
+        $id = isset($item['id']) ? $item['id'] : null;
+        if (!$id) return null;
+        
+        // One record at a time for now
+        $select = "SELECT * FROM $tableName WHERE id = ?;\n";
+        $rows = $this->conn->fetchAll($select,array($id));
+        if (count($rows) != 1) return null;
+        $itemx = $rows[0];
+        
+        // Detect changes
+        $changes = array();
+        foreach($itemx as $key => $value)
+        {
+            if (array_key_exists($key,$item))
+            {
+                // Need to deal with nulls and zeros
+                if ($value !== $item[$key])
+                {
+                    $changes[$key] = $item[$key];
+                }
+            }
+        }
+        if (count($changes) == 0) return null;
+        
+        return $this->conn->update($tableName,$changes,array('id' => $id));
+    }    
+    /* ===============================================================
+     * Update a person aggerate
+     * Going to get messy real quick
+     */
+    public function updatePerson($person)
+    {
+        $this->conn->beginTransaction();
+        
+        $this->updateItem('persons',$person);
+        
+        $this->conn->commit();
+        
+        return;
     }
 }
